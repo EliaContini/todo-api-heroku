@@ -1,0 +1,30 @@
+{
+   "name": "todos-api",
+   "version": "1.0.0",
+   "description": "A simple REST API to manage todos",
+   "main": "server.js",
+   "scripts": {
+      "test": "clear; tap --reporter=spec --watch"
+   },
+   "keywords": [
+      "fastify",
+      "mongodb",
+      "rest",
+      "api",
+      "heroku"
+   ],
+   "author": "Elia Contini",
+   "license": "MIT",
+   "dependencies": {
+      "dotenv": "^8.2.0",
+      "fastify": "^3.14.0",
+      "mongoose": "^5.12.2"
+   },
+   "devDependencies": {
+      "mongodb-memory-server": "^6.9.6",
+      "tap": "^14.11.0"
+   },
+   "engines": {
+      "node": "14.x"
+   }
+}
