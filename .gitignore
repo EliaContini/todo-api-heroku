@@ -2,6 +2,3 @@ node_modules
 .nyc_output
 
 .env
-
-PLAN.md
-POST.md
