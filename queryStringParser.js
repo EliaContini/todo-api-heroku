@@ -7,6 +7,18 @@
  *
  */
 
+const getBooleanFromString = (valueString) => {
+   switch (valueString) {
+      case "1":
+      case "true": {
+         return true;
+      }
+      default: {
+         return false;
+      }
+   }
+};
+
 const isValidSortProperty = (property) => {
    const SORTABLE_PROPERTIES = ["createdAt", "updatedAt"];
 
@@ -17,12 +29,6 @@ const isValidOrderBy = (orderBy) => {
    const ORDER_BY = ["asc", "desc"];
 
    return ORDER_BY.indexOf(orderBy) === -1 ? false : true;
-};
-
-const isValidState = (state) => {
-   const STATE = ["done", "todo"];
-
-   return STATE.indexOf(state) === -1 ? false : true;
 };
 
 const queryStringParser = (query) => {
@@ -45,12 +51,10 @@ const queryStringParser = (query) => {
 
             break;
          }
-         case "state": {
-            const state = query[key];
+         case "is-completed": {
+            const isCompleted = getBooleanFromString(query[key]);
 
-            if (isValidState(state)) {
-               params.isCompleted = state === "done" ? true : false;
-            }
+            params.isCompleted = isCompleted;
 
             break;
          }

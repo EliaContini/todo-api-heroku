@@ -23,7 +23,7 @@ test("", async (t) => {
       t.test("Get todos", async (t) => {
          const response = await db.get();
 
-         t.deepEqual(response, [], "returns an empty array");
+         t.same(response, [], "returns an empty array");
       });
 
       t.test("Create a todo", async (t) => {
@@ -33,13 +33,36 @@ test("", async (t) => {
 
          const response = await db.create(todo);
 
-         t.deepEqual(response.text, todo.text, "returns the just created todo");
+         t.same(response.text, todo.text, "returns the just created todo");
       });
 
       t.test("Get uncompleted todos", async (t) => {
          const response = await db.get({ isCompleted: false });
 
-         t.strictEqual(response.length, 1, "returns 1 todo");
+         t.equal(response.length, 1, "returns 1 todo");
+      });
+
+      t.test("Get todo by id", async (t) => {
+         const todo = {
+            text: "Get todo by id",
+         };
+
+         const responseCreate = await db.create(todo);
+         const responseGetById = await db.get({ id: responseCreate._id });
+
+         t.same(
+            responseGetById._id,
+            responseCreate._id,
+            "returns the requested todo"
+         );
+      });
+
+      t.test("Get todo by invalid id", async (t) => {
+         const invalidId = "000000000000000000000000";
+
+         const response = await db.get({ id: invalidId });
+
+         t.same(response, null, "returns null");
       });
 
       t.test("Set todo completed", async (t) => {
@@ -50,10 +73,10 @@ test("", async (t) => {
 
          const response = await db.update(todo);
 
-         t.equal(response.isCompleted, todo.isCompleted);
+         t.same(response.isCompleted, todo.isCompleted);
       });
 
-      t.test("Creates 2 uncompleted todos", async (t) => {
+      t.test("Creates 2 more uncompleted todos", async (t) => {
          const todo2 = {
             text: "Todo 2",
          };
@@ -66,7 +89,7 @@ test("", async (t) => {
 
          const responseUncompleted = await db.get({ isCompleted: false });
 
-         t.equal(responseUncompleted.length, 2);
+         t.same(responseUncompleted.length, 3);
       });
 
       t.test("Sort uncompleted todos by createdAt ascending", async (t) => {

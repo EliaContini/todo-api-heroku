@@ -58,6 +58,8 @@ const storage = (mongoUri) => {
        *
        * @param {object}  params
        *
+       * @param {string}  params.id - the id of the todo to retrieve
+       *
        * @param {object}  params.sortBy - sort constraints
        * @param {string}  params.sortBy.property - property to sort
        * @param {boolean} params.sortBy.isDescending - false for ascending,
@@ -74,14 +76,9 @@ const storage = (mongoUri) => {
          if (params != null) {
             // get by id
             if ("id" in params && params.id != null) {
-               return Todo.findById(params.id).then(
-                  (response) => {
-                     return response;
-                  },
-                  (error) => {
-                     return null;
-                  }
-               );
+               return Todo.findById(params.id).then((response) => {
+                  return response;
+               });
             }
             // all others get
             for (var key in params) {

@@ -21,12 +21,17 @@ function build(opts = {}) {
    app.get("/todos", async (request, reply) => {
       const params = queryStringParser(request.query);
 
-      let todos = [];
-      if (params != null) {
-         todos = await db.get(params);
-      }
+      const todos = await db.get(params);
 
       return reply.send(todos);
+   });
+
+   app.post("/todos", async (request, reply) => {
+      const todo = request.body;
+
+      const saved = await db.create(todo);
+
+      return reply.status(201).send(saved);
    });
 
    app.get("/todos/:id", async (request, reply) => {
@@ -43,18 +48,16 @@ function build(opts = {}) {
       return reply.send(todo);
    });
 
-   app.post("/todos", async (request, reply) => {
-      const todo = request.body;
-
-      const saved = await db.create(todo);
-
-      return reply.status(201).send(saved);
-   });
-
    app.put("/todos/:id", async (request, reply) => {
       const todo = request.body;
 
       const updated = await db.update(todo);
+
+      if (updated == null) {
+         return reply
+            .status(404)
+            .send({ message: `Todo with id ${todo._id} not found` });
+      }
 
       return reply.send(updated);
    });
