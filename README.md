@@ -6,7 +6,7 @@ This solution uses [Fastify](https://www.fastify.io/), [MongoDB Atlas](https://w
 
     $ npm install
 
-## Configure MongoDB URI
+## Configure MongoDB URI for local development
 
 Copy `sample.env` in `.env` and edit with your URI.
 
@@ -20,6 +20,21 @@ The server will listen to at http://localhost:3000
 
     $ npm test
 
-## Heroku
+## Deployment on Heroku
 
-TODO
+Login with your Heroku account
+
+    $ heroku login
+
+Create the app
+
+    $ heroku create
+
+Set environment variable with MongoDB Atlas connection string
+
+    $ heroku config:set MONGO_DB_URI="mongodb+srv://<username>:<password>@<cluster-name>.mongodb.net/<db-name>"
+
+Deploy
+
+    $ git push heroku master
+
