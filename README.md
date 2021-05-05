@@ -14,7 +14,7 @@ Copy `sample.env` in `.env` and edit with your URI.
 
     $ npm start
 
-The server will listen to at http://localhost:3000
+The server listens to connections at http://localhost:3000
 
 ## Run the tests
 
