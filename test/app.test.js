@@ -12,14 +12,14 @@ const { MongoMemoryServer } = require("mongodb-memory-server");
 const { test } = require("tap");
 
 const build = require("./../app");
-const storage = require("./../storage");
+const database = require("./../database");
 
 const mongoServer = new MongoMemoryServer();
 mongoose.Promise = Promise;
 
 test("", async (t) => {
    return mongoServer.getUri().then((mongoUri) => {
-      const db = storage(mongoUri);
+      const db = database(mongoUri);
 
       //#region ------------------------------- ------------------------ route /
       t.test('The route "/"', async (t) => {

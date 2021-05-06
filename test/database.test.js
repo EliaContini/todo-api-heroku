@@ -1,9 +1,9 @@
 /**
- * @module storage.test
+ * @module database.test
  *
  * @author Elia Contini <https://elia.contini.page/>
  *
- * @description Test for storage module
+ * @description Test for database module
  *
  */
 
@@ -11,14 +11,14 @@ const mongoose = require("mongoose");
 const { MongoMemoryServer } = require("mongodb-memory-server");
 const { test } = require("tap");
 
-const storage = require("./../storage");
+const database = require("./../database");
 
 const mongoServer = new MongoMemoryServer();
 mongoose.Promise = Promise;
 
 test("", async (t) => {
    return mongoServer.getUri().then((mongoUri) => {
-      const db = storage(mongoUri);
+      const db = database(mongoUri);
 
       t.test("Get todos", async (t) => {
          const response = await db.get();

@@ -1,5 +1,5 @@
 /**
- * @module storage
+ * @module database
  *
  * @author Elia Contini <https://elia.contini.page/>
  *
@@ -26,7 +26,7 @@ const todoSchema = new Schema(
 
 const Todo = mongoose.model("Todo", todoSchema);
 
-const storage = (mongoUri) => {
+const database = (mongoUri) => {
    // https://mongoosejs.com/docs/connections.html#buffering
    const connectionHandler = mongoose.connect(mongoUri, {
       useFindAndModify: false,
@@ -126,4 +126,4 @@ const storage = (mongoUri) => {
    };
 };
 
-module.exports = storage;
+module.exports = database;

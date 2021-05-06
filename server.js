@@ -10,9 +10,9 @@
 require("dotenv").config();
 
 const app = require("./app");
-const storage = require("./storage");
+const database = require("./database");
 
-const db = storage(process.env.MONGO_DB_URI);
+const db = database(process.env.MONGO_DB_URI);
 const server = app({
    db: db,
    logger: {
