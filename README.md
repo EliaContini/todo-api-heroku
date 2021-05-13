@@ -8,7 +8,7 @@ This solution uses [Fastify](https://www.fastify.io/), [MongoDB Atlas](https://w
 
 ## Configure MongoDB URI for local development
 
-Copy `sample.env` in `.env` and edit with your URI.
+Copy `sample.env` in `.env` and edit with your MONGODB_URI.
 
 ## Run the server
 
