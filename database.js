@@ -7,6 +7,8 @@
  *
  */
 
+"use strict";
+
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
@@ -91,9 +93,8 @@ const database = (mongoUri) => {
                   case "sortBy": {
                      const paramsSortBy = params[key];
 
-                     sortParams[
-                        paramsSortBy.property
-                     ] = paramsSortBy.isDescending ? -1 : 1;
+                     sortParams[paramsSortBy.property] =
+                        paramsSortBy.isDescending ? -1 : 1;
 
                      break;
                   }

@@ -3,9 +3,11 @@
  *
  * @author Elia Contini <https://elia.contini.page/>
  *
- * @description Parse and validate URI query string
+ * @description Parse and validate URL query string
  *
  */
+
+"use strict";
 
 const getBooleanFromString = (valueString) => {
    switch (valueString) {
@@ -32,7 +34,7 @@ const isValidOrderBy = (orderBy) => {
 };
 
 const queryStringParser = (query) => {
-   if (Object.keys(query).length === 0) {
+   if (query == null || Object.keys(query).length === 0) {
       return null;
    }
 

@@ -2,6 +2,8 @@
 
 This solution uses [Fastify](https://www.fastify.io/), [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and it is configured to be deployed on [Heroku](https://www.heroku.com/).
 
+You can read more details about the implementation in my [blog post](https://elia.contini.page/blog/fastify-mongodb-heroku-rest-api/).
+
 ## Install dependencies
 
     $ npm install

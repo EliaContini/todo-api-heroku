@@ -7,9 +7,25 @@
  *
  */
 
+"use strict";
+
 const { test } = require("tap");
 
 const queryStringParser = require("./../queryStringParser");
+
+// #region ------------------------------------------------- null or empty query
+test("if query is null,", async (t) => {
+   const params = queryStringParser(null);
+
+   t.same(params, null, "returns null");
+});
+
+test("if query is {},", async (t) => {
+   const params = queryStringParser({});
+
+   t.same(params, null, "returns null");
+});
+// #endregion ------------------------------------------------------------------
 
 // #region ------------------------------------------------ sort by and order by
 test("sort-by=createdAt.asc", async (t) => {
